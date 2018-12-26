@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+/**
+ * Generated class for the EventoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-evento',
+  templateUrl: 'evento.html',
+})
+export class EventoPage {
+   img: string;
+   title: string;
+   date;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.img = navParams.get('img');
+    this.title = navParams.get('title');
+    this.date = new Date(navParams.get('date'));
+  }
+}
