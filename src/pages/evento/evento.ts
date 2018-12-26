@@ -15,11 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EventoPage {
    img: string;
+   img2: string;
    title: string;
    date;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.img = navParams.get('img');
+    this.img2 = navParams.get('img2');
     this.title = navParams.get('title');
     this.date = new Date(navParams.get('date'));
+    console.log(this.img2);
   }
 }

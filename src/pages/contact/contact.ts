@@ -6,6 +6,7 @@ import { EventoPage } from '../evento/evento';
 import { HttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeZh from '@angular/common/locales/zh';
+// import { CacheService } from "ionic-cache";
 
 enableProdMode()
 registerLocaleData(localeZh);
@@ -37,8 +38,20 @@ export class ContactPage {
     // console.log(this.teste);
     this.chars = this.HttpClient.get(this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash); 
     this.loadEvents();
-     
+
+    
+  
+    // let url = (this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash);
+    // let cacheKey = url;
+    // let request = this.http.get(url);
+
+    // let response = this.cache.loadFromObservable(cacheKey, request);
+    // response.subscribe(data => {
+    //     console.log(data);
+    // });
   }
+ 
+
     eventSource;
     viewTitle;
     isToday: boolean;
@@ -57,7 +70,8 @@ export class ContactPage {
         this.navCtrl.push(EventoPage, {
             img: event.option.url,
             title: event.title,
-            date: event.startTime
+            date: event.startTime,
+            // fotos: 
            });
     }
     changeMode(mode) {
@@ -85,6 +99,7 @@ export class ContactPage {
         
         this.chars
         .subscribe((data: Response) => {
+            
             this.grupo = data['data']['results'];
             this.grupo.forEach(element => {
                 var date = new Date();
@@ -97,20 +112,22 @@ export class ContactPage {
 
                 startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
                 endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-              
+                // console.log(element);
                 events.push({
                     title: element['title'],
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
                     option:{
-                        url: element['thumbnail']['path']+"."+element['thumbnail']['extension']
+                        url: element['thumbnail']['path']+"."+element['extension'],
                     }
+                    
+                    
                 });
             });
         })
         
-     
+        console.log(events);
         
         return events;
     }
