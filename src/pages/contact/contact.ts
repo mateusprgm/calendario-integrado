@@ -56,15 +56,18 @@ export class ContactPage {
     viewTitle;
     isToday: boolean;
     calendar = {
-        mode: 'month',
+        mode: 'week',
         currentDate: new Date(),
-        // locale: 'pt |pt-br'
+        locale: 'pt |pt-br'
     }; // these are the variable used by the calendar.
     loadEvents() {
         this.eventSource = this.createRandomEvents();
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
+        let aux = this.viewTitle.split(",");
+        aux = aux[0];
+        this.viewTitle  = aux;
     }
     onEventSelected(event) {
         this.navCtrl.push(EventoPage, {
@@ -117,12 +120,10 @@ export class ContactPage {
                     title: element['title'],
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: false,
+                    // allDay: false,
                     option:{
-                        url: element['thumbnail']['path']+"."+element['extension'],
+                        url: element['thumbnail']['path']+"."+element['thumbnail']['extension'],
                     }
-                    
-                    
                 });
             });
         })
