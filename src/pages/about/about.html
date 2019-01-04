@@ -7,5 +7,12 @@
 </ion-header>
 
 <ion-content padding>
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="crescent"
+          refreshingText="Atualizando...">
+        </ion-refresher-content>
+      </ion-refresher>
 </ion-content>

@@ -1,3 +1,42 @@
 page-contact {
-
+    
+}
+.toolbar-background-md{
+    background:rgb(116, 3, 3)!important;
+}
+.monthview-primary-with-event{
+    background: #f51c1c!important;
+}
+.toolbar-title-md{
+    color: #FFF;
+}
+.monthview-secondary-with-event{
+    background-color: #fedddd!important;
+}
+.monthview-selected{
+    background-color: rgb(116, 3, 3)!important;
+}
+.bar-button-default-md{
+    color: #FFF!important;
+}
+.desc .scroll-content{
+    background-color: black!important;
+}
+.h1{
+    color: #FFF;
+}
+.tabs-md .tabbar{
+    background: #000000;
+}
+.tabs-md .tab-button{
+    color: #ffffff;
+}
+.tabs-md .tab-button-icon{
+    color: rgba(238, 0, 0, 0.781);
+}
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon{
+    color:#185cfb;
+}
+.calendar-event-inner{
+    background-color: rgb(238, 0, 0)!important;
 }

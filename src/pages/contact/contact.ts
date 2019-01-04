@@ -1,12 +1,11 @@
 import { Component, enableProdMode } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Md5 } from 'ts-md5/dist/md5';
 import { EventoPage } from '../evento/evento';
 import { HttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeZh from '@angular/common/locales/zh';
-// import { CacheService } from "ionic-cache";
 
 enableProdMode()
 registerLocaleData(localeZh);
@@ -15,6 +14,7 @@ registerLocaleData(localeZh);
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+  loadlabel = "Carregando Eventos...";
   chars:Observable<any>;
   lista:Observable<any>;
   descricao:Observable<any>;
@@ -30,25 +30,27 @@ export class ContactPage {
   
   hash = Md5.hashStr(this.timestamp+this.chavePrivada+this.chavePublica);
 
-  teste:string = (this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash);
+  
 
   grupo: Array<object>;
   
-  constructor(public navCtrl: NavController, public HttpClient: HttpClient, public grupos: HttpClient) {
-    // console.log(this.teste);
+  constructor(public navCtrl: NavController, public HttpClient: HttpClient, public grupos: HttpClient, public loadingCtrl: LoadingController) {
     this.chars = this.HttpClient.get(this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash); 
     this.loadEvents();
+    this.presentLoadingDefault();
+  }
 
-    
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando eventos...'
+    });
   
-    // let url = (this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash);
-    // let cacheKey = url;
-    // let request = this.http.get(url);
-
-    // let response = this.cache.loadFromObservable(cacheKey, request);
-    // response.subscribe(data => {
-    //     console.log(data);
-    // });
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+      this.today();
+    }, 5000);
   }
  
 
@@ -56,12 +58,13 @@ export class ContactPage {
     viewTitle;
     isToday: boolean;
     calendar = {
-        mode: 'week',
+        mode: 'month',
         currentDate: new Date(),
-        locale: 'pt |pt-br'
     }; // these are the variable used by the calendar.
+
     loadEvents() {
-        this.eventSource = this.createRandomEvents();
+        this.eventSource = this.createRandomEvents(); 
+        this.today();
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
@@ -74,7 +77,6 @@ export class ContactPage {
             img: event.option.url,
             title: event.title,
             date: event.startTime,
-            // fotos: 
            });
     }
     changeMode(mode) {
@@ -84,9 +86,9 @@ export class ContactPage {
         this.calendar.currentDate = new Date();
     }
     onTimeSelected(ev) {
-        
-         console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-             (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+       
+        //  console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+        //      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
     }
     onCurrentDateChanged(event:Date) {
         var today = new Date();
@@ -95,7 +97,15 @@ export class ContactPage {
         this.isToday = today.getTime() === event.getTime();
         
     }
+    doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
     
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          refresher.complete();
+          this.today();
+        }, 2000);
+      }
     createRandomEvents() {
         var events = [];
      
@@ -110,17 +120,15 @@ export class ContactPage {
                 var endTime;
                 var startDay = Math.floor(Math.random() * 90) - 45;
                 var endDay = Math.floor(Math.random() * 2) + startDay;
-                // startTime = new Date('2018-11-20');
-                // endTime = new Date('2018-11-20');
 
                 startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
                 endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                // console.log(element);
+
                 events.push({
                     title: element['title'],
                     startTime: startTime,
                     endTime: endTime,
-                    // allDay: false,
+                    allDay: false,
                     option:{
                         url: element['thumbnail']['path']+"."+element['thumbnail']['extension'],
                     }
@@ -128,12 +136,12 @@ export class ContactPage {
             });
         })
         
-        console.log(events);
+        
         
         return events;
     }
     onRangeChanged(ev) {
-        console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+        // console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
     }
     markDisabled = (date:Date) => {
         var current = new Date();

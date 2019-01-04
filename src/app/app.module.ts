@@ -17,7 +17,7 @@ import localePtBr from '@angular/common/locales/pt';
 
 import { registerLocaleData } from '@angular/common';
 import { EventoPage } from '../pages/evento/evento';
-// import { CacheModule } from "ionic-cache";
+
 
 enableProdMode()
 registerLocaleData(localePtBr);
@@ -36,7 +36,6 @@ registerLocaleData(localePtBr);
     IonicModule.forRoot(MyApp),
     NgCalendarModule,
     HttpClientModule,
-    // CacheModule.forRoot({keyPrefix : 'app-cache '})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
