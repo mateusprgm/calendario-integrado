@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar color="primary">
-      <ion-title>{{viewTitle}}</ion-title>
+      <ion-title>{{viewTitle}}Eventos</ion-title>
       <ion-buttons end>
-          <button ion-button [disabled]="isToday" (click)="today()">Hoje</button>
+          <!-- <button ion-button [disabled]="isToday" (click)="today()">Hoje</button>
           <button ion-button (click)="changeMode('month')">Mês</button>
-          <button ion-button (click)="changeMode('week')">Semana</button>
+          <button ion-button (click)="changeMode('week')">Semana</button> -->
           <!-- <button ion-button (click)="changeMode('day')">D</button>  -->          
       </ion-buttons>
   </ion-navbar>
@@ -19,7 +19,7 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-  <calendar [eventSource]="eventSource"
+  <!-- <calendar [eventSource]="eventSource"
             [calendarMode]="calendar.mode"
             [currentDate]="calendar.currentDate"
             (onCurrentDateChanged)="onCurrentDateChanged($event)"
@@ -27,5 +27,54 @@
             (onTitleChanged)="onViewTitleChanged($event)"
             (onTimeSelected)="onTimeSelected($event)"
             step="30">
-  </calendar>  
+  </calendar>   -->
+
+
+  <ion-grid>
+      <ion-row>
+        <ion-col col-2 col-sm *ngFor="let results of Eventos?.results; let index = index;">
+                
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+     <ion-row>
+
+    <ion-col col-2 col-sm *ngFor="let eventos of Eventos?.results; let index = index;">
+        <ion-segment [(ngModel)]="Evento">
+          <ion-segment-button value="{{index}}">
+            {{eventos.dias}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <div [ngSwitch]="Evento">
+        <div *ngFor="let temas of Eventos?.results; let index = index">
+          <ng-container *ngSwitchCase="index">
+            {{temas.evento.nome}}
+          </ng-container>
+          <ng-container *ngSwitchCase="index">
+              {{temas.evento.horario}}
+            </ng-container>
+        </div>
+      </div>
+
+   
+      <!-- <div [ngSwitch]="Evento">
+        <ion-list *ngSwitchCase="index">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="img/thumbnail-puppy-1.jpg">
+            </ion-thumbnail>
+            <h2>Ruby</h2>
+          </ion-item>
+          ...
+        </ion-list>
+      </div> -->
+    
+
 </ion-content>
+
+ 

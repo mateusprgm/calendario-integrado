@@ -14,6 +14,66 @@ registerLocaleData(localeZh);
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+    
+  Eventos = {
+      results: [{
+          dias: ['Seg'],
+          evento: {
+            nome:  ['credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+            horario: ['9h ás 12h e 14h ás 18h', '']
+            }
+       },
+       {
+          dias: ['Ter'],
+          evento: {
+            nome:  ['1credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+            horario: ['9h ás 12h e 14h ás 18h', '']
+          }
+       },
+       {
+        dias: ['Qua'],
+        evento: {
+          nome:  ['3credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+          horario: ['9h ás 12h e 14h ás 18h', '']
+        }
+       },
+       {
+        dias: ['Qui'],
+        evento: {
+          nome:  ['4credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+          horario: ['9h ás 12h e 14h ás 18h', '']
+        }
+     },
+     {
+        dias: ['Sex'],
+        evento: {
+          nome:  ['5credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+          horario: ['9h ás 12h e 14h ás 18h', '']
+        }
+     },
+     {
+        dias: ['Sáb'],
+        evento: {
+          nome:  ['6credenciamento','Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
+          horario: ['9h ás 12h e 14h ás 18h', '']
+        }
+     },
+    ]
+  };
+  
+
+  semana = {
+     dias: [  'Qui', 'Sex', 'Sáb'],
+     eventos: [, , '', ,,
+               , , , ],
+     horario: ['9h ás 12h', '14h ás 18h','10h ás 13h', '9h ás 12h', 'livre', '9h ás 12h', '15h ás 21h',
+               '13h30 ás 17h30', '13h30 ás 17h30', '13h30 ás 16h30', '13h30 ás 17h30', '13h30 ás 15h30',
+               '19h ás 22h']
+    };
+
+
+  
+
   loadlabel = "Carregando Eventos...";
   chars:Observable<any>;
   lista:Observable<any>;
@@ -36,8 +96,14 @@ export class ContactPage {
   
   constructor(public navCtrl: NavController, public HttpClient: HttpClient, public grupos: HttpClient, public loadingCtrl: LoadingController) {
     this.chars = this.HttpClient.get(this.url+this.chavePublica+'&ts='+this.timestamp+'&hash='+this.hash); 
-    this.loadEvents();
-    this.presentLoadingDefault();
+    console.log(this.chars);
+    // this.loadEvents();
+    // this.presentLoadingDefault();
+    console.log(this.Eventos);
+    
+    console.log(this.semana);
+
+    
   }
 
   presentLoadingDefault() {
