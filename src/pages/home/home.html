@@ -4,14 +4,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Puxe para atualizar"
+          refreshingSpinner="crescent"
+          refreshingText="Atualizando...">
+        </ion-refresher-content>
+      </ion-refresher> -->
+     
+         
+      <ion-slides style="height: 41%;" autoplay=4000 loop="true">
+          <ion-slide style="background-color:orange;">
+            <h1>Slide 1</h1>
+          </ion-slide>
+          <ion-slide style="background-color: chartreuse;">
+            <h1>Slide 2</h1>
+          </ion-slide>
+          <ion-slide style="background-color:hotpink;">
+            <h1>Slide 3</h1>
+          </ion-slide>
+        </ion-slides>
 </ion-content>

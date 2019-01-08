@@ -14,15 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'evento.html',
 })
 export class EventoPage {
-   img: string;
-   img2: string;
-   title: string;
-   date;
+  //  img: string;
+  //  img2: string;
+  //  title: string;
+  //  date;
+  evento: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.img = navParams.get('img');
-    this.img2 = navParams.get('img2');
-    this.title = navParams.get('title');
-    this.date = new Date(navParams.get('date'));
-    console.log(this.img2);
+   
+   this.evento = navParams.get('evento');
+    
+   console.log(this.evento);
+   
+    // this.img = navParams.get('img');
+    // this.img2 = navParams.get('img2');
+    // this.title = navParams.get('title');
+    // this.date = new Date(navParams.get('date'));
+    // console.log(this.img2);
   }
 }

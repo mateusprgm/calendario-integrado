@@ -15,15 +15,14 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-      <ion-slides>
-          <ion-slide>
-            <h1>Slide 1</h1>
-          </ion-slide>
-          <ion-slide>
-            <h1>Slide 2</h1>
-          </ion-slide>
-          <ion-slide>
-            <h1>Slide 3</h1>
-          </ion-slide>
-        </ion-slides>
+    <ion-list *ngFor="let noticia of noticia.slice().reverse(); let id = index;" >
+        <ion-item (click)="pushPageN(noticia.results.titulo, noticia.results.descricao)">
+          <ion-thumbnail item-start>
+            <img src="http://localhost:8100/assets/imgs/logo.png ">
+          </ion-thumbnail>
+          <h2>{{noticia.results.titulo}}</h2>
+          <p>{{noticia.results.descricao}}</p>
+          <button ion-button clear item-end>VER</button>
+        </ion-item>
+    </ion-list>
 </ion-content>

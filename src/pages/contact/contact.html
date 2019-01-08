@@ -8,17 +8,26 @@
           <!-- <button ion-button (click)="changeMode('day')">D</button>  -->          
       </ion-buttons>
   </ion-navbar>
+  <ion-row>
+      <ion-col col-2 col-sm *ngFor="let eventos of Eventos?.results; let index = index;">
+        <ion-segment [(ngModel)]="Event">
+          <ion-segment-button value="{{index}}">
+            {{eventos.data}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
 </ion-header>
 
 <ion-content class="has-header">
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
           pullingText="Puxe para atualizar"
           refreshingSpinner="crescent"
           refreshingText="Atualizando...">
         </ion-refresher-content>
-      </ion-refresher>
+      </ion-refresher> -->
   <!-- <calendar [eventSource]="eventSource"
             [calendarMode]="calendar.mode"
             [currentDate]="calendar.currentDate"
@@ -29,52 +38,27 @@
             step="30">
   </calendar>   -->
 
+     
+  
 
-  <ion-grid>
-      <ion-row>
-        <ion-col col-2 col-sm *ngFor="let results of Eventos?.results; let index = index;">
-                
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-
-
-     <ion-row>
-
-    <ion-col col-2 col-sm *ngFor="let eventos of Eventos?.results; let index = index;">
-        <ion-segment [(ngModel)]="Evento">
-          <ion-segment-button value="{{index}}">
-            {{eventos.dias}}
-          </ion-segment-button>
-        </ion-segment>
-      </ion-col>
-    </ion-row>
-    <div [ngSwitch]="Evento">
-        <div *ngFor="let temas of Eventos?.results; let index = index">
+    <div [ngSwitch]="Event">
+        <div *ngFor="let eventos of Eventos?.results; let index = index;">
           <ng-container *ngSwitchCase="index">
-            {{temas.evento.nome}}
-          </ng-container>
-          <ng-container *ngSwitchCase="index">
-              {{temas.evento.horario}}
+              <ion-segment [(ngModel)]="Event">
+                  <ion-segment-button value="{{index}}" >
+                    {{eventos.dia}}
+                  </ion-segment-button>
+                </ion-segment>
             </ng-container>
+              <ion-list  *ngSwitchCase="index">
+                  <ion-item *ngFor="let reward of eventos.evento.tema; let id = index;" (click)="pushPageEvento(eventos.evento.horario[id],reward)">
+                    <h2>
+                      <p >{{reward}}</p>
+                    </h2>
+                    <p>{{eventos.evento.horario[id]}}</p> 
+                    <button ion-button clear item-end>VER</button>
+                  </ion-item>
+              </ion-list>
         </div>
       </div>
-
-   
-      <!-- <div [ngSwitch]="Evento">
-        <ion-list *ngSwitchCase="index">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="img/thumbnail-puppy-1.jpg">
-            </ion-thumbnail>
-            <h2>Ruby</h2>
-          </ion-item>
-          ...
-        </ion-list>
-      </div> -->
-    
-
 </ion-content>
-
- 
