@@ -26,4 +26,14 @@
           <h1>Slide 3</h1>
         </ion-slide>
       </ion-slides>
+      
+      <ion-fab bottom right #fab>
+          <button ion-fab style="background-color: red" >Info</button>
+          <ion-fab-list side="left">
+                <ion-chip color="primary" (click)="pushPageCredenciados();">
+                    <ion-label color="black">Credenciados</ion-label>
+                  </ion-chip>
+          </ion-fab-list>
+        </ion-fab>
+        
 </ion-content>

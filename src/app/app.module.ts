@@ -18,6 +18,8 @@ import localePtBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { EventoPage } from '../pages/evento/evento';
 import { NoticiaPage } from '../pages/noticia/noticia';
+import { CredenciadosPage } from '../pages/credenciados/credenciados';
+import { PublicacoesPage } from '../pages/publicacoes/publicacoes';
 
 
 enableProdMode()
@@ -31,7 +33,9 @@ registerLocaleData(localePtBr);
     HomePage,
     TabsPage,
     EventoPage,
-    NoticiaPage
+    NoticiaPage,
+    CredenciadosPage,
+    PublicacoesPage,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ registerLocaleData(localePtBr);
     HomePage,
     TabsPage,
     EventoPage,
-    NoticiaPage
+    NoticiaPage,
+    CredenciadosPage,
+    PublicacoesPage,
   ],
   providers: [
     StatusBar,

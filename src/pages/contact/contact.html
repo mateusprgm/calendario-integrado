@@ -37,12 +37,7 @@
             (onTimeSelected)="onTimeSelected($event)"
             step="30">
   </calendar>   -->
-
-     
-  
-  
     <div [ngSwitch]="Event">
-        
         <div  *ngFor="let eventos of Eventos?.results; let index = index;">
             <!-- *ngSwitchCase="index" -->
           <ng-container >
@@ -53,26 +48,15 @@
                   </ion-segment-button>
                 </ion-segment>
             </ng-container>
-          
-       
-            
-            
               <ion-list  *ngSwitchCase="index">
-                  
-                  <ion-item *ngFor="let reward of eventos.evento.tema; let id = index;" (click)="pushPageEvento(eventos.evento.horario[id],reward)">
-                      
+                  <ion-item *ngFor="let reward of eventos.evento.tema; let id = index;" (click)="pushPageEvento(eventos.evento.horario[id],reward)">  
                     <h2>
                       <p >{{reward}}</p>
                     </h2>
                     <p>{{eventos.evento.horario[id]}}</p> 
                     <button ion-button clear item-end>VER</button>
-                  
                   </ion-item>
               </ion-list>
         </div> 
-      </div>
-
-      
-            
-          
+      </div>   
 </ion-content>
