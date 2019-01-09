@@ -1,7 +1,7 @@
 import { Component, enableProdMode } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { Md5 } from 'ts-md5/dist/md5';
+// import { Observable } from 'rxjs/Observable';
+// import { Md5 } from 'ts-md5/dist/md5';
 import { EventoPage } from '../evento/evento';
 import { HttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
@@ -69,11 +69,8 @@ export class ContactPage {
       ]
     };
    
-  
    
-    
- 
-
+   
 
 
 
@@ -114,6 +111,7 @@ export class ContactPage {
     
   }
     
+    
     pushPageEvento(horario, titulo){
         this.navCtrl.push(EventoPage, {
             evento: {
@@ -123,7 +121,7 @@ export class ContactPage {
         });
     }
   
-
+    
 //   presentLoadingDefault() {
 //     let loading = this.loadingCtrl.create({
 //       content: 'Carregando eventos...'
