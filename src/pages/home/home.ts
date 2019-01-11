@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CredenciadosPage } from '../credenciados/credenciados';
+
+
+import { ContactPage } from '../contact/contact';
 
 @Component({
   selector: 'page-home',
@@ -10,8 +12,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
   }
-  pushPageCredenciados(horario, titulo){
-    this.navCtrl.push(CredenciadosPage, {
+  pushPageEventos(horario, titulo){
+    this.navCtrl.push(ContactPage, {
         evento: {
             horario: horario,
             titulo: titulo,

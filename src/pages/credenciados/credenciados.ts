@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GrupoPage } from '../grupo/grupo';
 
 /**
  * Generated class for the CredenciadosPage page.
@@ -20,7 +21,8 @@ export class CredenciadosPage {
   
 
   searchQuery: string = '';
-  items: string[];
+  // items: string[];
+  items = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
    
     // for (let index = 0; index < 10; index++) {
@@ -52,21 +54,18 @@ export class CredenciadosPage {
 
   initializeItems() {
     this.items = [];
+    this.credenciado = [];
     for (let index = 0; index < 10; index++) {
       
       this.credenciado.push(
-       {
-         
-            titulo: "fulano"+index,
-            descricao: "300"+index,
-         
-       }
+        ["Grupo"+index, ["300"]]
       );
        
-       this.items.push("fulano"+index);
+       this.items.push(["Fulano"+index, ["300"+index],["Grupo"+index],["Seção Sindical: cidade"+index]]);
        
        
-     }console.log(this.credenciado);
+     }//console.log(this.items[1]);
+     console.log(this.items);
   }
 
   getItems(ev: any) {
@@ -77,15 +76,27 @@ export class CredenciadosPage {
     const val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    for (let index = 0; index < 10; index++) {
+    
       if (val && val.trim() != '') {
         this.items = this.items.filter((item) => {
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          
+          return (item[0].toLowerCase().indexOf(val.toLowerCase()) > -1);
+           
         })
       }
-    }
+    
     
   }
-  
+  pushPageG(item){
+    this.navCtrl.push(GrupoPage, {
+        item: {
+            nome: item[0],
+            sala: item[1],
+            grupo: item[2],
+            secao: item[3]
+        }
+        
+    });
+  }
 
 }

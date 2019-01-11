@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>credenciados</ion-title>
+    <ion-title>Grupos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,14 +24,24 @@
       </ion-refresher>
       <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
+   
+
   <ion-list *ngFor="let item of items; let index = index;" >
-      <ion-item >
-          <h2 >Nome: {{ item }}</h2>
+      <ion-item [ngSwitch]="my_tab">
+          <h2 >Nome: {{ item[0] }}</h2>
+          <p>Sala: {{item[1]}}   <b (click)="pushPageG(item)">{{item[2]}}</b>   {{item[3]}}</p>
+
+         
+
+
           <div *ngFor="let credenciado of credenciado; let id = index;" >
-            <div *ngIf="index == id">
-                
+            <div *ngSwitchCase="id">
+
+
+             
+
                   <p >
-                    Sala: {{credenciado.descricao}}
+                    Sala: {{credenciado.descricao}} {{credenciado.titulo}}
                   </p>
             </div>  
             

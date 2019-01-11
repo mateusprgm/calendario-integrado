@@ -20,6 +20,7 @@ import { EventoPage } from '../pages/evento/evento';
 import { NoticiaPage } from '../pages/noticia/noticia';
 import { CredenciadosPage } from '../pages/credenciados/credenciados';
 import { PublicacoesPage } from '../pages/publicacoes/publicacoes';
+import { GrupoPage } from '../pages/grupo/grupo';
 
 
 enableProdMode()
@@ -36,6 +37,7 @@ registerLocaleData(localePtBr);
     NoticiaPage,
     CredenciadosPage,
     PublicacoesPage,
+    GrupoPage,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ registerLocaleData(localePtBr);
     NoticiaPage,
     CredenciadosPage,
     PublicacoesPage,
+    GrupoPage,
   ],
   providers: [
     StatusBar,
