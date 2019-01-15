@@ -23,7 +23,7 @@
         </ion-refresher-content>
       </ion-refresher>
       <ion-list *ngFor="let noticia of noticia.slice().reverse(); let id = index;" >
-          <ion-item (click)="pushPageN(noticia.results.titulo, noticia.results.descricao)">
+          <ion-item>
             <ion-thumbnail item-start>
               <img src="http://localhost:8100/assets/imgs/logo.png ">
             </ion-thumbnail>

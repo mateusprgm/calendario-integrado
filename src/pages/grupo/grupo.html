@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{item['grupo']}}</ion-title>
+    <ion-title>{{grupo_nome}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,9 +15,9 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
-      <p>{{item['nome']}}</p>
-      <p>{{item['secao']}}</p>
+    <ion-item *ngFor="let item of grupo;" >
+              <p [innerHTML]="item.nome_pessoa">{{item.nome_pessoa}}</p>
+              <p>{{item.sessao}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

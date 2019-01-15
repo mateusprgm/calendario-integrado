@@ -23,7 +23,7 @@ export class PublicacoesPage {
       this.aaa = Array.length;
       this.noticia[index] = {
         results:{
-         titulo: "Noticia"+index,
+         titulo: "Publicação"+index,
          descricao: "Descrição"+index,
       }
  
