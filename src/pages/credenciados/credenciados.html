@@ -22,7 +22,7 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-      <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+      <ion-searchbar [placeholder]='teste' (ionInput)="getItems($event)"></ion-searchbar>
 
   <ion-list *ngFor="let item of items; let index = index;" >
       <ion-item [ngSwitch]="my_tab" (click)="pushPageG(item.grupo.id, item.grupo.name, item.name)">
