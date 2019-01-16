@@ -49,4 +49,16 @@ export class HomePage {
       }
     });
   }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      this.obs.subscribe(data =>{
+        this.noticias = data['results'];
+        console.log(this.noticias);
+      });
+      refresher.complete();
+    }, 2000);
+  }
 }
