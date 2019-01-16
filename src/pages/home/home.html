@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Alertas</ion-title>
+    <ion-title style="text-align: center;">Andes</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,25 +15,22 @@
       </ion-refresher> -->
      
          
-      <ion-slides style="height: 41%;" autoplay=4000 loop="true">
-        <ion-slide style="background-color:orange;">
-          <h1>Slide 1</h1>
+      <!-- <ion-slides style="height: 41%;" autoplay=4000 loop="true" *ngFor="let item of noticias; let index = index">
+        <ion-slide  *ngFor="let item of noticias; let index = index" >
+          <img src="{{item.image}}" alt="">
         </ion-slide>
-        <ion-slide style="background-color: chartreuse;">
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide style="background-color:hotpink;">
-          <h1>Slide 3</h1>
-        </ion-slide>
+      </ion-slides> -->
+
+      <ion-slides style="height: 41%;">
+          <ion-slide *ngFor="let noticia of noticias" (click)="pushPageNoticias(noticia.title, noticia.content, noticia.image);">
+             <img src="{{noticia.image}}" alt="">
+             <h1>{{noticia.title}}</h1>
+          </ion-slide>
+
       </ion-slides>
       
       <ion-fab bottom right #fab>
           <button ion-fab style="background-color: red" (click)="pushPageEventos();">Info</button>
-          <!-- <ion-fab-list side="left" >
-                <ion-chip color="primary" (click)="pushPageEventos();">
-                    <ion-label color="black">Credenciados</ion-label>
-                  </ion-chip>
-          </ion-fab-list> -->
         </ion-fab>
         
 </ion-content>

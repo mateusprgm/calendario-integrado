@@ -22,14 +22,13 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-      <ion-list *ngFor="let noticia of noticia.slice().reverse(); let id = index;" >
+      <ion-list *ngFor="let publicacoes of publicacoes; let id = index;" >
           <ion-item>
             <ion-thumbnail item-start>
               <img src="http://localhost:8100/assets/imgs/logo.png ">
             </ion-thumbnail>
-            <h2>{{noticia.results.titulo}}</h2>
-            <p>{{noticia.results.descricao}}</p>
-            <button ion-button clear item-end>BAIXAR</button>
+            <h2>{{publicacoes.title}}</h2>
+            <a href="{{publicacoes.file}}"><button ion-button clear item-end>BAIXAR</button></a>
           </ion-item>
       </ion-list>
 </ion-content>

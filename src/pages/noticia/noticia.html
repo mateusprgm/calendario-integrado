@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>noticia</ion-title>
+    <ion-title>Notícia</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,6 +22,10 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-  {{noticia.titulo}}
-  {{noticia.descricao}}
+      <img src="{{noticia.image}}" alt="">
+  <h1>{{noticia.titulo}}</h1>
+  <div [innerHTML]="noticia.descricao">
+      {{noticia.descricao}}
+  </div>
+  
 </ion-content>

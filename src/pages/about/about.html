@@ -6,6 +6,7 @@
   </ion-navbar>
 </ion-header>
 
+<!-- .slice().reverse(); -->
 <ion-content padding>
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
@@ -15,14 +16,22 @@
           refreshingText="Atualizando...">
         </ion-refresher-content>
       </ion-refresher>
-    <ion-list *ngFor="let noticia of noticia.slice().reverse(); let id = index;" >
-        <ion-item (click)="pushPageN(noticia.results.titulo, noticia.results.descricao)">
+    <ion-list *ngFor="let noticia of noticia let id = index;" >
+        <ion-item (click)="pushPageN(noticia.title, noticia.content, noticia.image)">
           <ion-thumbnail item-start>
-            <img src="http://localhost:8100/assets/imgs/logo.png ">
+            <img src="{{noticia.image}}">
           </ion-thumbnail>
-          <h2>{{noticia.results.titulo}}</h2>
-          <p>{{noticia.results.descricao}}</p>
+          <h2>{{noticia.title}}</h2>
+          <p [innerHTML]="noticia.sumary"></p>
           <button ion-button clear item-end>VER</button>
         </ion-item>
     </ion-list>
+
+    <!-- <ion-list>
+      <ion-item *ngFor="let noticia of noticia">
+        <ion-thumbnail>
+          <img src="{{noticia.image}}" alt="">
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>  -->
 </ion-content>

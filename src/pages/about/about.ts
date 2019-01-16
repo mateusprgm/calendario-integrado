@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NoticiaPage } from '../noticia/noticia';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-about',
@@ -8,28 +10,29 @@ import { NoticiaPage } from '../noticia/noticia';
 })
 export class AboutPage {
   
-  noticia: Object = [];
   
-  aaa;     
-  constructor(public navCtrl: NavController) {
-    for (let index = 0; index < 10; index++) {
-     this.aaa = Array.length;
-     this.noticia[index] = {
-       results:{
-        titulo: "Noticia"+index,
-        descricao: "Descrição"+index,
-     }
+  
+  url = "http://webtecsites.com.br/api/doc/noticias";
 
-     };
-     
-    }
-    console.log(this.noticia+this.aaa);
+  obs:Observable<any>;
+  public noticia: Array<Object>;
+  
+  constructor(public navCtrl: NavController, public HttpClient: HttpClient) {
+    this.obs = HttpClient.get(this.url);
+
+     this.obs.subscribe(data =>{
+       this.noticia = data['results'];
+     })
+     console.log(this.noticia);
   }
-  pushPageN(titulo, descricao){
+    
+  
+  pushPageN(titulo, descricao, image){
     this.navCtrl.push(NoticiaPage, {
         noticia: {
             titulo: titulo,
             descricao: descricao,
+            image: image
         }
     });
   }
