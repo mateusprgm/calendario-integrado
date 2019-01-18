@@ -14,13 +14,6 @@
         </ion-refresher-content>
       </ion-refresher>
      
-         
-      <!-- <ion-slides style="height: 41%;" autoplay=4000 loop="true" *ngFor="let item of noticias; let index = index">
-        <ion-slide  *ngFor="let item of noticias; let index = index" >
-          <img src="{{item.image}}" alt="">
-        </ion-slide>
-      </ion-slides> -->
-
       <ion-slides style="height: 69%;">
           <ion-slide *ngFor="let noticia of noticias" (click)="pushPageNoticias(noticia.title, noticia.content, noticia.image);">
              <img src="{{noticia.image}}" alt="">
@@ -30,7 +23,6 @@
       </ion-slides>
       
       <ion-fab bottom right #fab>
-          <button ion-fab style="background-color: red" (click)="pushPageEventos();">Info</button>
-        </ion-fab>
-        
+        <button ion-fab style="background-color: red" (click)="pushPageEventos();">Info</button>
+      </ion-fab>
 </ion-content>

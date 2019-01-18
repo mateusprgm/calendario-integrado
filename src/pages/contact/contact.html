@@ -37,7 +37,7 @@
             (onTimeSelected)="onTimeSelected($event)"
             step="30">
   </calendar>   -->
-    <div [ngSwitch]="Event">
+    <div [ngSwitch]="Event" style="margin-top: 15%;">
         <div  *ngFor="let evento of Eventos; let index = index;">
             <!-- *ngSwitchCase="index" -->
           <ng-container >
