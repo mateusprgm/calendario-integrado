@@ -9,10 +9,10 @@
       </ion-buttons>
   </ion-navbar>
   <ion-row>
-      <ion-col col-2 col-sm *ngFor="let eventos of Eventos; let index = index;">
+      <ion-col col-2 col-sm *ngFor="let dia of dias; let index = index;">
         <ion-segment [(ngModel)]="Event">
           <ion-segment-button value="{{index}}">
-            {{eventos.data}}
+            {{dia}}
           </ion-segment-button>
         </ion-segment>
       </ion-col>

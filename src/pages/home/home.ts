@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, DateTime } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 
 import { ContactPage } from '../contact/contact';
@@ -22,36 +22,41 @@ export class HomePage {
   obs2:Observable<any>; 
   public noticias: Array<Object>;
   public eventos = [];
-  public evento = [];
+  public evento= [];
+ 
 
 
   constructor(public navCtrl: NavController, public HttpClient: HttpClient) {
 
-    let data = new Date("2015-03-25");
-    console.log(data);
+  
+    
+    
 
     this.obs = HttpClient.get(this.url);
+    this.obs2 = HttpClient.get(this.url2);
 
     this.obs.subscribe(data =>{
       this.noticias = data['results'];
-      // console.log(this.noticias);
     });
-
-    this.obs2 = HttpClient.get(this.url2);
 
     this.obs2.subscribe(data =>{
       this.eventos = data['results'];
-      // console.log(this.eventos);
-
       this.eventos.forEach(element => {
-        this.evento.push({
-          evento:element
+      data = new Date().getDate() + "-" + new Date().getMonth()+1 + "-" + new Date().getFullYear();
+        if(element.data == data){
+            this.evento.push({
+              evento:{
+                atual: element
+              }
+            }
+          );
         }
-       );
-      });
+      }); 
+      this.evento = this.evento[0]['evento'].atual
       console.log(this.evento);
     })
   }
+
   pushPageEventos(horario, titulo){
     this.navCtrl.push(ContactPage, {
         evento: {
@@ -72,13 +77,29 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
-    // console.log('Begin async operation', refresher);
-
     setTimeout(() => {
       this.obs.subscribe(data =>{
         this.noticias = data['results'];
         // console.log(this.noticias);
       });
+      this.obs2.subscribe(data =>{
+        this.evento = [];
+        this.eventos = data['results'];
+        this.eventos.forEach(element => {
+        data = new Date().getDate() + "-" + new Date().getMonth()+1 + "-" + new Date().getFullYear();
+          if(element.data == data){
+              this.evento.push({
+                evento:{
+                  atual: element
+                }
+              }
+            );
+          }
+        }); 
+        this.evento = this.evento[0]['evento'].atual
+        console.log(this.evento);
+      })
+
       refresher.complete();
     }, 2000);
   }

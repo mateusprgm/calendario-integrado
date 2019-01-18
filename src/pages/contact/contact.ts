@@ -22,7 +22,7 @@ export class ContactPage {
     obs: Observable<any>;
 
     Eventos = [];
-   
+    dias = [];
 
 //   loadlabel = "Carregando Eventos...";
 //   chars:Observable<any>;
@@ -56,9 +56,17 @@ export class ContactPage {
 
       this.obs.subscribe(data =>{
         this.Eventos = data.results; 
-        // console.log(this.Eventos);
+        this.Eventos.forEach(element =>{
+          let dia = element.data.split("-");
+          dia = dia[0]+"/"+dia[1]
+          
+          this.dias.push(
+            dia
+          );
+        })
+        
       })
-    
+      console.log(this.dias);
     
   }
     
