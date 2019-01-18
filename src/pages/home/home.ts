@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, DateTime } from 'ionic-angular';
 
 
 import { ContactPage } from '../contact/contact';
@@ -27,7 +27,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public HttpClient: HttpClient) {
 
-    
+    let data = new Date("2015-03-25");
+    console.log(data);
+
     this.obs = HttpClient.get(this.url);
 
     this.obs.subscribe(data =>{
