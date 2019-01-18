@@ -6,6 +6,7 @@ import { EventoPage } from '../evento/evento';
 import { HttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeZh from '@angular/common/locales/zh';
+import { Observable } from 'rxjs/Observable';
 
 
 enableProdMode()
@@ -15,68 +16,13 @@ registerLocaleData(localeZh);
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-  
+
+    url = "http://webtecsites.com.br/api/doc/agendas";
+
+    obs: Observable<any>;
+
+    Eventos = [];
    
-    Eventos = {
-        results: [{
-            data: ['28/01'], 
-            dia: 'Segunda-feira',
-            evento: {
-              tema:  ['Credenciamento', 'Credenciamento', 'Plenária de Abertura', 'Plenária de Instalação', 'Plenária do Tema I'],
-              horario: ['9h as 12h', '14h as 18h', '10h as 13h', '10h as 13h', '15h as 21h'],
-              },
-         },
-         {
-            data: ['29/01'], 
-            dia: 'Terça-feira',
-            evento: {
-                tema:  ['Grupo Misto Tema II','Grupo Misto Tema II'],
-                horario: ['9h ás 12h', '13h30 ás 17h30']
-                },
-         },
-         {
-          data: ['30/01'], 
-          dia: 'Quarta-feira',
-          evento: {
-            tema:  ['Grupo Misto Tema III','Grupo Misto Tema IV'],
-            horario: ['9h ás 12h', '13h30 ás 17h30']
-            },
-         },
-         {
-          data: ['31/01'], 
-          dia: 'Quinta-feira',
-          evento: {
-            tema:  ['Plenária do Tema II','Plenária do Tema II'],
-            horario: ['9h ás 12h', '13h30 ás 16h30']
-            },
-       },
-       {
-          data: ['01/02'], 
-          dia: 'Sexta-feira',
-          evento: {
-            tema:  ['Plenária do Tema III', 'Plenária do Tema IV'],
-            horario: ['13h30 ás 17h30', '19h as 22h']
-            },
-       },
-       {
-          data: ['02/02'], 
-          dia: 'Sábado',
-          evento: {
-            tema:  ['Plenária do Tema IV','Plenária de Encerramento'],
-            horario: ['9h ás 12h', '13h30 ás 15h30']
-            },
-       },
-      ]
-    };
-   
-   
-   
-
-
-
-
-
-  
 
 //   loadlabel = "Carregando Eventos...";
 //   chars:Observable<any>;
@@ -106,19 +52,22 @@ export class ContactPage {
     // console.log(this.Eventos);
     
    
-    
+      this.obs = HttpClient.get(this.url);
+
+      this.obs.subscribe(data =>{
+        this.Eventos = data.results; 
+        // console.log(this.Eventos);
+      })
     
     
   }
     
     
-    pushPageEvento(horario, titulo){
+    pushPageEvento(palestra){
         this.navCtrl.push(EventoPage, {
-            evento: {
-                horario: horario,
-                titulo: titulo,
-            }
+             palestra:{palestra}
         });
+       
     }
   
     

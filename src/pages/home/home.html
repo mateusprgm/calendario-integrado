@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
@@ -21,7 +21,7 @@
         </ion-slide>
       </ion-slides> -->
 
-      <ion-slides style="height: 41%;">
+      <ion-slides style="height: 69%;">
           <ion-slide *ngFor="let noticia of noticias" (click)="pushPageNoticias(noticia.title, noticia.content, noticia.image);">
              <img src="{{noticia.image}}" alt="">
              <h1>{{noticia.title}}</h1>

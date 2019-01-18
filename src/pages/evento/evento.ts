@@ -18,12 +18,12 @@ export class EventoPage {
   //  img2: string;
   //  title: string;
   //  date;
-  evento: string;
+  palestra = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
    
-   this.evento = navParams.get('evento');
-    
-   console.log(this.evento);
+   this.palestra = navParams.get('palestra');
+   this.palestra = this.palestra['palestra'];
+   console.log(this.palestra);
    
     // this.img = navParams.get('img');
     // this.img2 = navParams.get('img2');

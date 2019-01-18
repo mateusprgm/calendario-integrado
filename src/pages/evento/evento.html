@@ -7,19 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Eventos ANDES</ion-title>
+    <ion-title>Eventos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  {{evento.titulo}}
-  {{evento.horario}}
+        <p>{{palestra.title}}</p>
+        <p>{{palestra.horario}}</p>
+       <p>{{palestra.tema}}</p>
+      <H1>Documentos</H1>
+  <ion-list>
+     <ion-item *ngFor="let doc of palestra.documentos;">
+        <a href="{{doc.arquivo}}">{{doc.name}}</a>
+    </ion-item> 
+  </ion-list>
 </ion-content> 
-
-
-<!-- <ion-content padding class="desc">
-  <ion-title>{{title}}</ion-title>
-  <img src="{{img}}" alt="{{title}}">
-  <h1 class="h1">{{ date | date: 'dd'}} de {{ date | date: 'MMMM'}} de {{ date | date: 'yyyy'}}</h1>
-</ion-content> -->
