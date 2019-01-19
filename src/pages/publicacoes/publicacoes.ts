@@ -41,6 +41,11 @@ export class PublicacoesPage {
 
     setTimeout(() => {
       console.log('Async operation has ended');
+      this.obs.subscribe(data =>{
+        this.publicacoes = data['results'];
+        this.publicacoes.sort();
+        // console.log(this.publicacoes);
+      })
       refresher.complete();
     }, 2000);
   }
