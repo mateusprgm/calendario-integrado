@@ -40,6 +40,7 @@ export class HomePage {
     });
 
     this.obs2.subscribe(data =>{
+      let ev = false;
       this.eventos = data['results'];
       this.eventos.forEach(element => {
       data = new Date().getDate() + "-" + new Date().getMonth()+1 + "-" + new Date().getFullYear();
@@ -50,10 +51,15 @@ export class HomePage {
               }
             }
           );
+          ev = true;
         }
       }); 
-      this.evento = this.evento[0]['evento'].atual
-      console.log(this.evento);
+      if(ev){
+        this.evento = this.evento[0]['evento'].atual
+        console.log(this.evento);
+      }
+      
+      
     })
   }
 
@@ -83,6 +89,7 @@ export class HomePage {
         // console.log(this.noticias);
       });
       this.obs2.subscribe(data =>{
+        let ev = false;
         this.evento = [];
         this.eventos = data['results'];
         this.eventos.forEach(element => {
@@ -94,10 +101,13 @@ export class HomePage {
                 }
               }
             );
+            ev = true;
           }
         }); 
-        this.evento = this.evento[0]['evento'].atual
-        console.log(this.evento);
+        if(ev){
+          this.evento = this.evento[0]['evento'].atual
+          console.log(this.evento);
+        }
       })
 
       refresher.complete();
