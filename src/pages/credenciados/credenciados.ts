@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 )
 export class CredenciadosPage {
 
-  public teste = "Buscar...";
+  public busca = "Buscar...";
   
   
   url = "http://webtecsites.com.br/api/doc/credeciamento";
@@ -40,7 +40,6 @@ export class CredenciadosPage {
               this.items = data['results'];
               this.grupo = this.items;
           })
-      
   }
 
   doRefresh(refresher) {
@@ -70,9 +69,6 @@ export class CredenciadosPage {
 
     // set val to the value of the searchbar
     const val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    
       if (val && val.trim() != '') {
         this.items = this.items.filter((item) => {
           
@@ -93,7 +89,4 @@ export class CredenciadosPage {
         
     });
   }
-
-  
-
 }
