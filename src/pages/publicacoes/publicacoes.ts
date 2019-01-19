@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ListaDocumentosPage } from '../lista-documentos/lista-documentos';
 
 /**
  * Generated class for the PublicacoesPage page.
@@ -19,7 +20,7 @@ export class PublicacoesPage {
 
   
   
-  url = "http://webtecsites.com.br/api/doc/documentos";
+  url = "http://webtecsites.com.br/api/doc/documentos/categorias";
   obs: Observable<any>;
   publicacoes: Array<object>;
 
@@ -30,7 +31,7 @@ export class PublicacoesPage {
     this.obs.subscribe(data =>{
       this.publicacoes = data['results'];
       this.publicacoes.sort();
-   
+      // console.log(this.publicacoes);
     })
      console.log(this.publicacoes);
   }
@@ -43,5 +44,11 @@ export class PublicacoesPage {
       refresher.complete();
     }, 2000);
   }
+
+  pushPageListaDoc(lista){
+    this.navCtrl.push(ListaDocumentosPage,{
+      lista: lista
+    })
+  };
 
 }

@@ -23,12 +23,12 @@
         </ion-refresher-content>
       </ion-refresher>
       <ion-list *ngFor="let publicacoes of publicacoes; let id = index;" >
-          <ion-item>
+          <ion-item (click)="pushPageListaDoc(publicacoes)">
             <ion-thumbnail item-start>
               <img src="http://localhost:8100/assets/imgs/logo.png ">
             </ion-thumbnail>
-            <h2>{{publicacoes.title}}</h2>
-            <a href="{{publicacoes.file}}" ><button ion-button clear item-end>VISUALIZAR</button></a>
+            <h2>{{publicacoes.name}}</h2>
+            <button ion-button clear item-end>VISUALIZAR</button>
           </ion-item>
       </ion-list>
 </ion-content>
