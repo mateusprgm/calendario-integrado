@@ -6,6 +6,7 @@ import { ContactPage } from '../contact/contact';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { NoticiaPage } from '../noticia/noticia';
+import { EventoPage } from '../evento/evento';
 
 @Component({
   selector: 'page-home',
@@ -69,6 +70,12 @@ export class HomePage {
             horario: horario,
             titulo: titulo,
         }
+    });
+  }
+
+  pushPagePalestra(palestra){
+    this.navCtrl.push(EventoPage, {
+        palestra: {palestra}
     });
   }
 
