@@ -25,6 +25,7 @@
       </ion-slides>
       <div>
         {{evento.dia}}
+        {{texto}}
         <ion-list>
           <ion-item *ngFor="let evento of evento?.palestras" (click)="pushPagePalestra(evento);">
             <p>{{evento.title}}</p>

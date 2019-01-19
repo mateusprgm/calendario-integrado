@@ -24,7 +24,7 @@ export class HomePage {
   public noticias: Array<Object>;
   public eventos = [];
   public evento= [];
- 
+  public texto:string;
 
 
   constructor(public navCtrl: NavController, public HttpClient: HttpClient) {
@@ -56,8 +56,11 @@ export class HomePage {
         }
       }); 
       if(ev){
-        this.evento = this.evento[0]['evento'].atual
+        this.evento = this.evento[0]['evento'].atual;
+        this.texto = "";
         console.log(this.evento);
+      }else{
+        this.texto = "Não Existe eventos hoje!";
       }
       
       
@@ -112,8 +115,11 @@ export class HomePage {
           }
         }); 
         if(ev){
-          this.evento = this.evento[0]['evento'].atual
+          this.evento = this.evento[0]['evento'].atual;
+          this.texto = "";
           console.log(this.evento);
+        }else{
+          this.texto = "Não Existe eventos hoje!";
         }
       })
 
