@@ -1,2 +1,2 @@
-# calendario-integrado
-# calendario-integrado
+# Implementação exemplo calendário de eventos.
+# Ionic
